@@ -1,0 +1,20 @@
+{
+  "name": "xenon-popup",
+  "description": "tooltip that displays on hover and stays until un-hovered",
+  "main": "xenon-popup.html",
+  "keywords": [
+    "xenon",
+    "popup",
+    "tooltip"
+  ],
+  "authors": [
+    "josh hickerson"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/acaxlabs/xenon-popup",
+  "dependencies": {
+    "polymer": "polymer/polymer#1.x.x",
+    "iron-icon": "polymerelements/iron-icon#1.x.x",
+    "iron-icons": "polymerelements/iron-icons#1.x.x"
+  }
+}

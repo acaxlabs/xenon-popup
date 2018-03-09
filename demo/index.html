@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="../../webcomponentsjs/webcomponents.min.js"></script>
+    <link rel="import" href="../xenon-popup.html" />
+    <link rel="import" href="../../paper-button/paper-button.html" />
+</head>
+<body>
+    <dom-module id="demo-page">
+        <template>
+            <div style="width:248px; background-color:red; padding:16px; margin-bottom:16px;" on-mouseover="show">hover me</div>
+            <xenon-popup id="simplepopup">
+                <div style="color:white;">Im a simple popup tooltip that stays until until unhovered</div>
+            </xenon-popup>
+
+            <div style="width:248px; background-color:blue; padding:16px;" on-mouseover="showcplx">complex hover me</div>
+            <xenon-popup id="complexpopup">
+                <div style="color:white;">Im a complex popup tooltip that stays until until unhovered</div>
+                <paper-button style="background-color:orangered;" onclick='alert("clicked")'>click me</paper-button>
+            </xenon-popup>
+        </template>
+        <script>
+            Polymer({
+                is: "demo-page",
+                show: function (e) {
+                    this.$.simplepopup.show(e.currentTarget.getBoundingClientRect());
+                },
+                showcplx: function (e) {
+                    this.$.complexpopup.show(e.currentTarget.getBoundingClientRect());
+                }
+            });
+        </script>
+    </dom-module>
+    <demo-page></demo-page>
+</body>
+</html>

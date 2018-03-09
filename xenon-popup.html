@@ -1,0 +1,55 @@
+﻿
+<!--
+`<xenon-popup>` this element has docs
+Example:
+    <xenon-popup id="popup">
+        <div>I am a pop up</div>
+    </xenon-popup>
+@element xenon-popup
+@demo demo/index.html
+-->
+
+
+<link rel="import" href="../polymer/polymer.html" />
+<link rel="import" href="../iron-icon/iron-icon.html" />
+<link rel="import" href="../iron-icons/iron-icons.html" />
+
+<dom-module id="xenon-popup">
+    <template>
+        <style>
+            #wrap { position: fixed; width: 320px; }
+            #content { background-color: rgba(53, 53, 53, 0.95); color: white; padding: 16px; border-radius: 3px; }
+            #icon { text-align: center; }
+            iron-icon { margin-bottom: -12px; }
+        </style>
+        <div id="wrap" hidden on-mouseout="hide" on-mouseover="_show">
+            <div id="icon"><iron-icon icon="arrow-drop-up"></iron-icon></div>
+            <div id="content">
+                <content></content>
+            </div>
+        </div>
+    </template>
+    <script>
+		Polymer({
+            is: "xenon-popup",
+            properties: {
+                position: { type: Object, notify: true }
+            },
+            show: function (pos) {
+                this.set("position", pos);
+                this.$.wrap.hidden = false;
+                var me = this.$.wrap.getBoundingClientRect();
+                this.$.wrap.style.top = (pos.y + pos.height - 8).toString() + "px";
+                this.$.wrap.style.left = (pos.x + (pos.width / 2) - (me.width / 2)).toString() + "px";
+            },
+            hide: function (event) {
+                var e = event.toElement || event.relatedTarget;
+                if (e.parentNode == this || e == this) return;
+                this.$.wrap.hidden = true;
+            },
+            _show: function (e) {
+                this.show(this.position);
+            }
+		});
+    </script>
+</dom-module>
